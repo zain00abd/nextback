@@ -13,6 +13,9 @@
     "start": "nodemon index.js",
     "dev": "nodemon --ext *"
   },
+  "engines": {
+    "node": "20.11.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
