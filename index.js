@@ -4,7 +4,7 @@ const index = express()
 
 const mongoose = require("mongoose")
 
-const port = 3001
+const port = 3001 || process.env.PORT
 const AdduserModal = require("./module")
 
 index.get('/', (req, res) => {
