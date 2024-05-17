@@ -1,6 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const dns = require('dns');
+dns.setDefaultResultOrder('ipv4first');
+
 
 const index = express();
 index.use(cors());
@@ -18,7 +21,12 @@ index.get('/', (req, res) => {
     });
 });
 
-mongoose.connect("mongodb+srv://zaindiv:Zain007abd@cluster0.32r5dqe.mongodb.net/all-data?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://zaindiv:Zain007abd@cluster0.32r5dqe.mongodb.net/all-data?retryWrites=true&w=majority", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000, // Adjust the timeout as needed
+  socketTimeoutMS: 45000, // Adjust the timeout as needed
+})
   .then(() => {
     index.listen(port, () => {
       console.log(`http://localhost:${port}/`);
