@@ -13,6 +13,7 @@ index.use(cors());
 const port = process.env.PORT || 3001;
 const AdduserModal = require("./models/module");
 const InvoiceModal = require("./models/invoiceModel");
+const UserModal = require("./models/UserModal");
 
 index.get('/', (req, res) => {
   AdduserModal.find()
@@ -34,6 +35,16 @@ index.get('/invoice', (req, res) => {
     });
 });
 
+index.get('/userinvoice', (req, res) => {
+  UserModal.find()
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.status(500).send(error.message); // Respond with error message
+    });
+});
+
 index.get('/invoice/:id', (req, res) => {
   InvoiceModal.findById(req.params.id)
     .then((result) => {
@@ -42,6 +53,19 @@ index.get('/invoice/:id', (req, res) => {
     .catch((error) => {
       res.status(500).send(error.message); // Respond with error message
     });
+});
+
+
+index.put('/invoicee/:id', (req, res) => {
+  InvoiceModal.findByIdAndUpdate(req.params.id, req.body)
+  .then(() =>{
+    console.log("sdw******************************desd")
+      res.redirect("/");
+  })
+  .catch((err) =>{
+      console.log(err)
+  })
+  console.log(req.body)
 });
 
 
