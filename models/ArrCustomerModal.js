@@ -3,8 +3,15 @@ const Schema = mongoose.Schema;
 const models = mongoose.models;
 
 const invoiceSchema = new Schema({
-  customers: Array,
+  customers: [
+    {
+      name:String,
+      phone:String,
+      addres:String,
+      arrinvoice:Array,
+    }
 
+  ],
 });
 
 const invoiceModal = models.invoicecustomer || mongoose.model('invoicecustomer', invoiceSchema);
