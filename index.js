@@ -16,6 +16,7 @@ const ArrCustomerModal = require("./models/ArrCustomerModal");
 const InvoiceCustomerArr = require("./models/InvoiceCustomerArr");
 const InvoiceModal = require("./models/invoiceModel");
 const UserModal = require("./models/UserModal");
+const AbdoDataModal = require("./models/AbdoDataModal");
 
 index.get("/", (req, res) => {
   AdduserModal.find()
@@ -36,6 +37,17 @@ index.get("/invoice", (req, res) => {
       res.status(500).send(error.message); // Respond with error message
     });
 });
+
+index.get("/abdodata", (req, res) => {
+  AbdoDataModal.find()
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.status(500).send(error.message); // Respond with error message
+    });
+});
+
 
 index.get("/userinvoice", (req, res) => {
   UserModal.find()
