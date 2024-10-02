@@ -17,6 +17,7 @@ const InvoiceCustomerArr = require("./models/InvoiceCustomerArr");
 const InvoiceModal = require("./models/invoiceModel");
 const UserModal = require("./models/UserModal");
 const AbdoDataModal = require("./models/AbdoDataModal");
+const UserAbdoModal = require("./models/UserAbdoModal");
 
 index.get("/", (req, res) => {
   AdduserModal.find()
@@ -38,26 +39,46 @@ index.get("/invoice", (req, res) => {
     });
 });
 
+
+
+index.get("/userinvoice", (req, res) => {
+  UserModal.find()
+  .then((result) => {
+    res.json(result);
+  })
+  .catch((error) => {
+    res.status(500).send(error.message); // Respond with error message
+  });
+});
+
+
+
+
+// abdo project ********=====******** START**
 index.get("/abdodata", (req, res) => {
   AbdoDataModal.find()
     .then((result) => {
       res.json(result);
     })
     .catch((error) => {
-      res.status(500).send(error.message); // Respond with error message
+      res.status(500).send(error.message);
     });
 });
 
 
-index.get("/userinvoice", (req, res) => {
-  UserModal.find()
+index.get("/abdouser", (req, res) => {
+  UserAbdoModal.find()
     .then((result) => {
       res.json(result);
     })
     .catch((error) => {
-      res.status(500).send(error.message); // Respond with error message
+      res.status(500).send(error.message);
     });
 });
+
+// abdo project ********=====******** END**
+
+
 
 index.get("/invoice/:id", (req, res) => {
   InvoiceModal.findById(req.params.id)
